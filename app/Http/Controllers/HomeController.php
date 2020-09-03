@@ -23,6 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('components.homemaster');
+        return view('home');
     }
 }
