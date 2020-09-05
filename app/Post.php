@@ -15,4 +15,17 @@ class Post extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+
+    // mutator, the convention is camelcase
+    // public function setPostImageAttribute($value)
+    // {
+    //     $this->attributes['post_image'] = asset($value);
+    // }
+
+    // accessor
+    public function getPostImageAttribute($value)
+    {
+        return asset('/storage/' . $value);
+    }
 }
