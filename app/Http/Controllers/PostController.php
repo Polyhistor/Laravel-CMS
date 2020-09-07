@@ -45,11 +45,41 @@ class PostController extends Controller
         return redirect()->route('post.index');
     }
 
+    public function edit(Post $post)
+    {
+        $this->authorize('view', $post);
+        return view('admin.posts.edit', ['post' => $post]);
+    }
+
     public function destroy(Post $post, Request $request)
     {
         $post->delete();
         $request->session()->flash('message', 'Post was deleted');
 
         return back();
+    }
+
+    public function update(Post $post, Request $request)
+    {
+        $inputs = request()->validate([
+            'title' => 'required|min:8|max:255',
+            'body' => 'required'
+        ]);
+
+        if (request('post_image')) {
+            $inputs['post_image'] = $request->file('post_image')->store('images');
+            $post->post_image = $inputs['post_image'];
+        }
+
+        $post->title = $inputs['title'];
+        $post->body = $inputs['body'];
+
+        $this->authorize('update', $post);
+
+        $post->save();
+
+        $request->session()->flash('post-update-message', 'Post was updated');
+
+        return redirect()->route('post.index');
     }
 }

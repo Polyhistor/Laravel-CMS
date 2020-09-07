@@ -10,7 +10,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin', 'AdminsController@index')->name('admin.index');
     Route::get('/admin/posts/create', 'PostController@create')->name('post.create');
     Route::get('/admin/posts', 'PostController@index')->name('post.index');
+    Route::get('/admin/posts/edit/{post}', 'PostController@edit')->name('post.edit');
 
     Route::post('/admin/posts', 'PostController@store')->name('post.store');
-    Route::delete('/admin/posts/{post}', 'PostController@destroy')->name('post.destroy');
+
+    Route::delete('/admin/posts/{post}/destroy', 'PostController@destroy')->name('post.destroy');
+    Route::patch('/admin/posts/{post}/update', 'PostController@update')->name('post.update');
 });
