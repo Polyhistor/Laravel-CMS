@@ -12,7 +12,10 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::all();
+        $posts = auth()->user()->posts;
+
+        // in case you wanted to retrieve pagination
+        // $posts = auth()->user()->posts()->paginate(5);
 
         return view('admin.posts.index', ['posts' => $posts]);
     }
@@ -29,6 +32,9 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+
+        $this->authorize('store', Post::class);
+
         $inputs = request()->validate([
             'title' => 'required|min:8|max:255',
             'body' => 'required'
@@ -55,6 +61,8 @@ class PostController extends Controller
 
     public function destroy(Post $post, Request $request)
     {
+
+        $this->authorize('delete', $post);
         $post->delete();
         $request->session()->flash('message', 'Post was deleted');
 

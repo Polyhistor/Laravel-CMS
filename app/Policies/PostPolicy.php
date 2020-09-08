@@ -41,7 +41,8 @@ class PostPolicy
      */
     public function create(User $user)
     {
-        //
+        // this is how we check if user is logged in
+        return $user->is($user);
     }
 
     /**
