@@ -10,9 +10,15 @@
             <form method="post" action="" enctype="multipart/form-data">
                 @csrf
 
+                <div class="mb-4"><img class="img-profile rounded-circle" src="" alt=""></div>
+
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" name="name" class="form-control" id="name" aria-describedby="" placeholder="enter name" value={{ $user->name }}>
+                    <input type="file">
+                </div>
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" class="form-control" id="username" aria-describedby="" placeholder="enter username" value={{ $user->username }}>
                 </div>
 
                 <div class="form-group">
