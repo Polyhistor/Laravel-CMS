@@ -14,11 +14,14 @@ class UserController extends Controller
 
     public function update(User $user)
     {
+
+        // dd(request());
+
         $inputs = request()->validate([
             'username' => ['required', 'string', 'max:255', 'alpha_dash'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
-            'password' => ['min:6', 'max:255', 'confirmed'],
+            // 'password' => ['min:6', 'max:255', 'confirmed'],
             'avatar' => ['file'],
         ]);
 
