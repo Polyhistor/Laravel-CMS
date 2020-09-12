@@ -63,6 +63,57 @@
         </div>
     </div>
 
+
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-bordered" id="rolesTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Options</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Slug</th>
+                        <th>Detach</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Options</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Slug</th>
+                        <th>Attach</th>
+                        <th>Detach</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach($roles as $role)
+                    <tr>
+                        <td><input type="checkbox" @foreach($user->roles as $user_role)
+                            @if($user_role->slug == $role->slug)
+                            checked
+                            @endif
+                            @endforeach></td>
+                        <td>{{ $role->id }}</td>
+                        <td>{{ $role->name }}</td>
+                        <td>{{ $role->slug }}</td>
+                        <td>
+                            <form method="post" action="{{ route('user.role.attach', $user) }}">
+                                @method('PUT')
+                                @csrf
+                                <input type="hidden" name="role" value="{{ $role->id }}">
+                                <button class="btn btn-primary">Attach</button>
+                            </form>
+
+                        </td>
+                        <td> <button class="btn btn-primary">Detach</button></td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+
     @endsection
 
 </x-admin-master>

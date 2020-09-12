@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Role;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -17,7 +18,7 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        return view('admin.users.profile', ['user' => $user]);
+        return view('admin.users.profile', ['user' => $user, 'roles' => Role::all()]);
     }
 
     public function update(User $user)
@@ -47,6 +48,15 @@ class UserController extends Controller
         $user->delete();
 
         session()->flash('user-deleted', 'User has been deleted');
+
+        return back();
+    }
+
+    public function attach(User $user, Role $role)
+    {
+        dd(request());
+
+        $user->roles()->attach(request('role'));
 
         return back();
     }
