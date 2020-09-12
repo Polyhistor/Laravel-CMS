@@ -49,11 +49,7 @@
             @endforeach
         </tbody>
     </table>
-
-
-
     @endsection
-
 
     @section('scripts')
     <!-- Page level plugins -->

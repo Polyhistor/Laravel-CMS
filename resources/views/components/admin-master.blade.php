@@ -55,8 +55,12 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <x-admin-sidebar-postslinks></x-admin-sidebar-postslinks>
+            @if(auth()->user()->userHasRole('admin'))
             <x-admin-sidebar-users-links></x-admin-sidebar-users-links>
+            @endif
+
+            <x-admin-sidebar-postslinks></x-admin-sidebar-postslinks>
+
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
