@@ -61,7 +61,7 @@
             @endif
 
             <x-admin.sidebar.admin-sidebar-postslinks></x-admin.sidebar.admin-sidebar-postslinks>
-
+            <x-admin.sidebar.authorization-links></x-admin.sidebar.authorization-links>
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
@@ -291,6 +291,8 @@
 
                         <!-- Nav Item - User Information -->
                         <x-admin.top-nav.admin-top-nabvar-user-information></x-admin.top-nav.admin-top-nabvar-user-information>
+
+
 
                     </ul>
 

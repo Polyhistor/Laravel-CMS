@@ -102,11 +102,19 @@
                                 @method('PUT')
                                 @csrf
                                 <input type="hidden" name="role" value="{{ $role->id }}">
-                                <button class="btn btn-primary">Attach</button>
+                                <button class="btn btn-primary" @if ($user->roles->contains($role)) disabled @endif >
+                                    Attach</button>
                             </form>
 
                         </td>
-                        <td> <button class="btn btn-primary">Detach</button></td>
+                        <td>
+                            <form method="post" action="{{ route('user.role.detach', $user) }}">
+                                @method('PUT')
+                                @csrf
+                                <input type="hidden" name="role" value="{{ $role->id }}">
+                                <button class="btn btn-primary" @if (!$user->roles->contains($role)) disabled @endif>Detach</button>
+                            </form>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
