@@ -8,3 +8,4 @@ Route::delete('/roles/{role}/destroy', 'RoleController@destroy')->name('roles.de
 Route::get('/roles/{role}/edit', 'RoleController@edit')->name('roles.edit');
 Route::put('/roles/{role}/update', 'RoleController@update')->name('roles.update');
 Route::put('/roles/{role}/attach', 'RoleController@attach_permission')->name('roles.permission.attach');
+Route::put('/roles/{role}/detach', 'RoleController@detach_permission')->name('roles.permission.detach');
