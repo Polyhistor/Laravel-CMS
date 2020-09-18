@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Session;
 use App\Post;
 
 class PostController extends Controller
@@ -13,10 +11,6 @@ class PostController extends Controller
     public function index()
     {
         $posts = auth()->user()->posts;
-
-        // in case you wanted to retrieve pagination
-        // $posts = auth()->user()->posts()->paginate(5);
-
         return view('admin.posts.index', ['posts' => $posts]);
     }
 
